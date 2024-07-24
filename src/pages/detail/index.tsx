@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 
 export function Detail(){
-    const {id} = useParams();
+    const {id} = useParams<{id:string}>();
     const [detail, setDetail] = useState<ProductProps>();
     const [relacionados, setRelacionados] = useState<ProductProps[]>([])
     const {cart, addItemCart} = useContext(CartContext);
@@ -19,10 +19,10 @@ export function Detail(){
             try {
                 const response = await api.get('http://localhost:3000/products');
                 const allProducts = response.data;
-                const productDetail = allProducts.find((product: ProductProps) => product.id === id);
+                const productDetail = allProducts.find((product: ProductProps) => product.id === Number(id));
                 setDetail(productDetail);
 
-                const produtosRe = allProducts.filter((product: ProductProps) => product.id !== id);
+                const produtosRe = allProducts.filter((product: ProductProps) => product.id !== Number(id));
                 setRelacionados(produtosRe);
             }catch(error){
                 console.log("Erro ao buscar detalhes do produto:", error);
