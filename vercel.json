@@ -1,4 +1,19 @@
 {
+    "builds":[
+        {
+        "src": "server.js",
+        "use": "@vercel/node",
+        "config": {
+            "includesFiles": ["db.json"]
+        }
+    }
+],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "server.js"
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
