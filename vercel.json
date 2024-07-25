@@ -6,13 +6,17 @@
         "use": "@vercel/node"
       },
       {
-        "src": "vite.config.js",
+        "src": "vite.config.ts",
         "use": "@vercel/static-build"
       }
     ],
     "routes": [
       { "src": "/api/(.*)", "dest": "/api/server.js" },
       { "src": "/(.*)", "dest": "/index.html" }
+    ],
+    "rewrites": [
+      { "source": "/api/(.*)", "destination": "/api/server.js" },
+      { "source": "/(.*)", "destination": "/index.html" }
     ]
   }
   
