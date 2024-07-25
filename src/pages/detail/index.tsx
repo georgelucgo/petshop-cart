@@ -3,13 +3,11 @@ import { api } from "../../services/axios"
 import { useParams, useNavigate } from "react-router-dom"
 import { ProductProps } from "../home"
 import { CartContext } from "../../contexts/CartContext"
-import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 
 export function Detail(){
-    const {id} = useParams<{id:string}>();
+    const {id} = useParams();
     const [detail, setDetail] = useState<ProductProps>();
-    const [relacionados, setRelacionados] = useState<ProductProps[]>([])
     const {cart, addItemCart} = useContext(CartContext);
     const navigate = useNavigate();
 
@@ -17,13 +15,8 @@ export function Detail(){
     useEffect(()=> {
         async function getProdutos(){
             try {
-                const response = await api.get('http://localhost:3000/products');
-                const allProducts = response.data;
-                const productDetail = allProducts.find((product: ProductProps) => product.id === Number(id));
-                setDetail(productDetail);
-
-                const produtosRe = allProducts.filter((product: ProductProps) => product.id !== Number(id));
-                setRelacionados(produtosRe);
+                const response = await api.get(`http://localhost:3000/products/${id}`);
+                setDetail(response.data);
             }catch(error){
                 console.log("Erro ao buscar detalhes do produto:", error);
                 
@@ -40,7 +33,7 @@ export function Detail(){
 
     return(
 
-        <div className="max-w-7xl mx-auto mb-20">
+        <div className="max-w-7xl mx-auto mb-72">
          
             {detail && (
             <section className="w-full max-w-7xl bg border-2 border-slate-100  p-4 rounded-lg flex flex-col lg:flex-row mt-32 mb-40 bg-white mx-auto">
@@ -62,25 +55,7 @@ export function Detail(){
             </section>
             )}
             
-            <div>
-            <h1 className="text-2xl mb-5">Produtos relacionados a este item</h1>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
-                {relacionados.slice(0,5).map((item)=>(
-                <Link to={`/detail/${item.id}`}>
-                <section key={item.id} className="flex flex-col gap-1 bg-white p-4 border border-gray-300 rounded h-[22rem]">
-                <img className="max-h-60 object-contain"  src={item.cover} alt="" />
-                <p className="font-medium">{item.title}</p>
-                <p className="font-semibold text-[#FFBC10]">{item.price.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                })}</p>
-                </section>
-                </Link>
-                ))}
-
-
-            </div>
-            </div>
+           
 
         </div>
     )

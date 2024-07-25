@@ -2,8 +2,7 @@ import { BsFacebook, BsTwitter, BsGithub } from "react-icons/bs";
 
 export function Footer(){
     return (
-        <div>
-           <div className="bg-[#FFCA41] text-white ">
+           <footer className="bg-[#FFCA41] text-white">
             <div className="flex justify-between mx-auto max-w-7xl">
             <div className="my-10 mx-5">
             <div className="mb-20 w-full">
@@ -37,7 +36,6 @@ export function Footer(){
             
             <h1 className="max-w-7xl mx-auto text-center text-xs md:text-base">© 2024 Pets Paradise. Todos os direitos reservados.</h1>
 
-            </div>
-        </div>
+            </footer>
     )
 }
