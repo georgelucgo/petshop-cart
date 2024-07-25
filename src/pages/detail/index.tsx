@@ -28,6 +28,7 @@ export function Detail(){
     function handleAddCartItem (product: ProductProps){
         toast.success('Produto adicionado ao carrinho')
         addItemCart(product);
+        console.log(cart);
         navigate('/cart')
     }
 
