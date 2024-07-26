@@ -5,7 +5,7 @@ const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 server.use(jsonServer.rewriter({
-  '/api/*': '/$1',
+  '/*': '/$1',
 }));
 server.use(router);
 
