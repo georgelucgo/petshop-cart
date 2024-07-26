@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export const api = axios.create({
-    baseURL: 'https://localhost:3000/'
+    baseURL: 'https://api-petshop-theta.vercel.app/'
 })
 

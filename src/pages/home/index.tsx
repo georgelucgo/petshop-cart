@@ -16,7 +16,7 @@ export function Home(){
 
     useEffect(()=>{
         async function getProducts(){
-            const response = await api.get('http://localhost:3000/products')
+            const response = await api.get('https://api-petshop-theta.vercel.app/products')
             console.log('Api response: ', response.data);
             
             setProducts(response.data)

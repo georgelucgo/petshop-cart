@@ -15,7 +15,7 @@ export function Detail(){
     useEffect(()=> {
         async function getProdutos(){
             try {
-                const response = await api.get(`http://localhost:3000/products/${id}`);
+                const response = await api.get(`https://api-petshop-theta.vercel.app/products/${id}`);
                 setDetail(response.data);
             }catch(error){
                 console.log("Erro ao buscar detalhes do produto:", error);
